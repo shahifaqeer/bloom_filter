@@ -1,0 +1,3 @@
+[submodule "bloom-client"]
+	path = bloom-client
+	url = ../bloom-server.git
