@@ -31,8 +31,8 @@ BLOOM *bloom_create(FILE* fptr, size_t size, size_t nfuncs, ...)
     /* Read downloaded bloom filter into array buffer */
     nread = fread(bf, (size+CHAR_BIT-1)/CHAR_BIT, sizeof(char), fptr);
 
-    printf("%d\n%d\n", (size+CHAR_BIT-1)/CHAR_BIT, sizeof(char));
-    printf("Read %d bytes\n", nread);
+    /* printf("%d\n%d\n", (size+CHAR_BIT-1)/CHAR_BIT, sizeof(char)); */
+    /* printf("Read %d bytes\n", nread); */
 
     /* assign functions */
     va_start(l, nfuncs);
@@ -54,7 +54,7 @@ int bloom_download()
 {
     int res;
     res = system("curl -s -f -z filter.bin -O http://sites.noise.gatech.edu/~sarthak/files/bloomfilter/filter.bin");
-    printf("Download result is %d\n", res);
+    /* printf("Download result is %d\n", res); */
 
     return res;
 }
@@ -64,7 +64,7 @@ int bloom_destroy(BLOOM *bloom)
     free(bloom->a);
     free(bloom->funcs);
     free(bloom);
-    printf("Destroy\n");
+    /* printf("Destroy\n"); */
 
     return 0;
 }
@@ -76,7 +76,7 @@ int bloom_check(BLOOM *bloom, const char *s)
     for(n=0; n<bloom->nfuncs; ++n) {
         if(!(GETBIT(bloom->a, bloom->funcs[n](s)%bloom->asize))) return 0;
     }
-    printf("%s exists. return 1\n", s);
+    /* printf("%s exists. return 1\n", s); */
 
     return 1;
 }

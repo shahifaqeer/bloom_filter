@@ -16,6 +16,7 @@ typedef struct {
 BLOOM* bloom_create(FILE* fp, size_t size, size_t nfuncs, ...);
 int bloom_download();
 int bloom_destroy(BLOOM *bloom);
+/* return 1 if s in hash filter */
 int bloom_check(BLOOM *bloom, const char *s);
 BLOOM* bloomFilter(const char *filepath);
 /* int bloom_add(BLOOM *bloom, const char *s);
