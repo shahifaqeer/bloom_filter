@@ -7,12 +7,12 @@
 
 int main(int argc, char *argv[])
 {
-    FILE *fp;
-    /* No domain more than 1024 characs */
+
     char line[1024];
     char *p;
     BLOOM *bloom;
-
+    /*
+    FILE *fp;
     if(argc<2) {
         fprintf(stderr, "ERROR: No bloom filter file specified\n");
         return EXIT_FAILURE;
@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     fclose(fp);
+    */
+    bloom = bloomFilter(PATH_TO_FILTER);
 
     printf("Enter domains to check.\n");
 

@@ -4,6 +4,7 @@
 #include<string.h>
 
 #include"bloom.h"
+#include"hash-config.h"
 
 #define SETBIT(a, n) (a[n/CHAR_BIT] |= (1<<(n%CHAR_BIT)))
 #define GETBIT(a, n) (a[n/CHAR_BIT] & (1<<(n%CHAR_BIT)))
@@ -92,3 +93,44 @@ int bloom_add(BLOOM *bloom, const char *s)
     return 0;
 }
 */
+
+/* TODO ADD THIS FUNCTION TO main.c */
+BLOOM* bloomFilter(const char *filepath)
+{
+    FILE* fp;
+    BLOOM *bloom;
+
+    /* Download bloom filter */
+    if(bloom_download()) {
+        perror("Could not download filter from server.");
+    }
+    if (!(fp=fopen(filepath, "rb"))) {
+        perror("Could not open bloom filter file.");
+        return NULL;
+    }
+
+    if(!(bloom=bloom_create(fp, BLOOMSIZE, NUMHASH, sax_hash, sdbm_hash))) {
+        fprintf(stderr, "ERROR: Could not create bloom filter\n");
+        return NULL;
+    }
+    fclose(fp);
+
+    return bloom;
+}
+
+    /* check block - enter name to check
+    while(fgets(line, 1024, stdin)) {
+        if((p=strchr(line, '\r'))) *p='\0';
+        if((p=strchr(line, '\n'))) *p='\0';
+
+        p=strtok(line, " \t,;\r\n!");
+        while(p) {
+            if(!bloom_check(bloom, p)) {
+                printf("No match for word \"%s\"\n", p);
+            }
+            p=strtok(NULL, " \t,.;:\r\n?!-/()");
+        }
+    }
+
+    bloom_destroy(bloom);
+    */

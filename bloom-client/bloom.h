@@ -1,5 +1,5 @@
-#ifndef __BLOOM_H__
-#define __BLOOM_H__
+#ifndef BLOOM_WHITELIST_H
+#define BLOOM_WHITELIST_H
 
 #include<stdlib.h>
 #include<zlib.h>
@@ -17,6 +17,7 @@ BLOOM* bloom_create(FILE* fp, size_t size, size_t nfuncs, ...);
 int bloom_download();
 int bloom_destroy(BLOOM *bloom);
 int bloom_check(BLOOM *bloom, const char *s);
+BLOOM* bloomFilter(const char *filepath);
 /* int bloom_add(BLOOM *bloom, const char *s);
  * int bloom_dump(BLOOM *bloom, const char* filepath);
  */
