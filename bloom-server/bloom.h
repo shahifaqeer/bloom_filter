@@ -6,10 +6,10 @@
 
 typedef unsigned int (*hashfunc_t)(const char *);
 typedef struct {
-	size_t asize;
-	unsigned char *a;
-	size_t nfuncs;
-	hashfunc_t *funcs;
+    size_t asize;
+    unsigned char *a;
+    size_t nfuncs;
+    hashfunc_t *funcs;
     int timestamp;
 } BLOOM;
 
@@ -20,4 +20,3 @@ int bloom_check(BLOOM *bloom, const char *s);
 int bloom_dump(BLOOM *bloom, const char* filepath);
 
 #endif
-

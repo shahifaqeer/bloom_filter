@@ -13,8 +13,8 @@ typedef struct {
     int timestamp;
 } BLOOM;
 
-BLOOM* bloom_create(size_t size, size_t nfuncs, ...);
-int bloom_download(BLOOM* bloom, FILE* fptr);
+BLOOM* bloom_create(FILE* fp, size_t size, size_t nfuncs, ...);
+int bloom_download();
 int bloom_destroy(BLOOM *bloom);
 int bloom_check(BLOOM *bloom, const char *s);
 /* int bloom_add(BLOOM *bloom, const char *s);
@@ -22,4 +22,3 @@ int bloom_check(BLOOM *bloom, const char *s);
  */
 
 #endif
-
