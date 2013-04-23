@@ -75,7 +75,7 @@ int bloom_dump(BLOOM *bloom, const char* filepath)
     FILE* fptr;
     if (NULL == (fptr = fopen(filepath, "wb"))) {
         printf("Error dumping bloom filter to %s\n", filepath);
-        return 1;
+        return 0;
     }
 
     /* return should not be 0, else error occurred */
