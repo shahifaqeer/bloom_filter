@@ -41,12 +41,12 @@ int main(int argc, char *argv[])
     fclose(fp);
 
     /* TODO Dump twice - filter.bin and filter_version.bin */
-    filepath = "bloomfilter/filter.bin";
+    filepath = "/tmp/filter.bin";
     if (!bloom_dump(bloom, filepath)) {
         fprintf(stderr, "ERROR: Could not dump bloom filter %s\n", filepath);
     }
 
-    sprintf(filepath2, "%s%d.bin", "bloomfilter/filter_", (int)time(NULL));
+    sprintf(filepath2, "%s%d.bin", "/tmp/bloomfilter/filter_", (int)time(NULL));
     if (!bloom_dump(bloom, filepath2)) {
         fprintf(stderr, "ERROR: Could not dump bloom filter %s\n", filepath2);
     }
