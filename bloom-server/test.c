@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
     fclose(fp);
 
-    /* TODO Dump twice - filter.bin and filter_version.bin */
+    /* Dump twice - filter.bin and filter_version.bin */
     filepath = "/tmp/filter.bin";
     if (!bloom_dump(bloom, filepath)) {
         fprintf(stderr, "ERROR: Could not dump bloom filter %s\n", filepath);

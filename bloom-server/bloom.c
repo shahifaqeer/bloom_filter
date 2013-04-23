@@ -73,10 +73,13 @@ int bloom_dump(BLOOM *bloom, const char* filepath)
 {
     int nwrite;
     FILE* fptr;
-    fptr = fopen(filepath, "wb");
+    if (NULL == (fptr = fopen(filepath, "wb"))) {
+        printf("Error dumping bloom filter to %s\n", filepath);
+        return 1;
+    }
 
     /* return should not be 0, else error occurred */
-    printf("%d\n%d\n", (bloom->asize+CHAR_BIT-1)/CHAR_BIT, sizeof(char));
+    printf("%d\n%d\n", (bloom->asize+CHAR_BIT)/CHAR_BIT, sizeof(char));
 
     nwrite = fwrite(bloom->a, (bloom->asize+CHAR_BIT-1)/CHAR_BIT, sizeof(char), fptr);
     printf("Wrote %d bytes\n", nwrite);
